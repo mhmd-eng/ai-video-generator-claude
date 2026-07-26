@@ -70,14 +70,14 @@ The result: prompts that produce studio-quality video instead of generic AI slop
 ```bash
 # Clone into your Claude skills folder
 cd ~/.claude/skills
-git clone https://github.com/rediumvex/ai-video-generator-claude.git ai-video-generator
+git clone https://github.com/mhmd-eng/ai-video-generator-claude.git ai-video-generator
 ```
 
 Or if you use gstack:
 
 ```bash
 cd ~/.claude/skills/gstack
-git clone https://github.com/rediumvex/ai-video-generator-claude.git ai-video-generator
+git clone https://github.com/mhmd-eng/ai-video-generator-claude.git ai-video-generator
 ```
 
 Restart Claude Code. Each skill inside `skills/` is now available.
