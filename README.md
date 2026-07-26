@@ -2,7 +2,7 @@
 
 # AI Video Generator — Claude Skill
 
-> **11 prompt engineering skills that turn Claude into a cinematic video director for Seedance 2.0 on Higgsfield.** You describe an idea — the skill architects a 15-25 line production-grade prompt with exact timing, camera angles, lighting setup, and sound design. Paste into Higgsfield, get studio-quality video.
+> **12 prompt engineering skills that turn Claude into a cinematic video director for Seedance 2.0 on Higgsfield.** You describe an idea — the skill architects a 15-25 line production-grade prompt with exact timing, camera angles, lighting setup, and sound design. Paste into Higgsfield, get studio-quality video.
 
 **This is the actual skill set I use to generate every AI video for [@theromanknox](https://instagram.com/theromanknox) (280K+ followers).** Not templates. Not "try this prompt." The real production pipeline — copied straight from my `~/.claude/skills/`.
 
@@ -24,7 +24,7 @@ One idea in, finished video prompt out.
 
 ---
 
-## The 11 skills
+## The 12 skills
 
 ### For views
 | # | Skill | What it generates |
@@ -40,6 +40,7 @@ One idea in, finished video prompt out.
 | 04 | **Course Promo** | Trailers that sell out coaching programs and courses |
 | 08 | **Testimonial Story** | Social proof videos that actually convert |
 | 11 | **Food & Beverage** | Appetite-triggering video for restaurants, cafes, bars and packaged food |
+| 12 | **Industrial Manufacturing** | B2B capability films for factories, plants and export — scale, precision, compliance |
 
 ### For brand
 | # | Skill | What it generates |
