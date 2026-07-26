@@ -2,7 +2,7 @@
 
 # AI Video Generator — Claude Skill
 
-> **10 prompt engineering skills that turn Claude into a cinematic video director for Seedance 2.0 on Higgsfield.** You describe an idea — the skill architects a 15-25 line production-grade prompt with exact timing, camera angles, lighting setup, and sound design. Paste into Higgsfield, get studio-quality video.
+> **11 prompt engineering skills that turn Claude into a cinematic video director for Seedance 2.0 on Higgsfield.** You describe an idea — the skill architects a 15-25 line production-grade prompt with exact timing, camera angles, lighting setup, and sound design. Paste into Higgsfield, get studio-quality video.
 
 **This is the actual skill set I use to generate every AI video for [@theromanknox](https://instagram.com/theromanknox) (280K+ followers).** Not templates. Not "try this prompt." The real production pipeline — copied straight from my `~/.claude/skills/`.
 
@@ -24,7 +24,7 @@ One idea in, finished video prompt out.
 
 ---
 
-## The 10 skills
+## The 11 skills
 
 ### For views
 | # | Skill | What it generates |
@@ -39,6 +39,7 @@ One idea in, finished video prompt out.
 | 02 | **SaaS Launch** | Product videos that look like an Apple keynote |
 | 04 | **Course Promo** | Trailers that sell out coaching programs and courses |
 | 08 | **Testimonial Story** | Social proof videos that actually convert |
+| 11 | **Food & Beverage** | Appetite-triggering video for restaurants, cafes, bars and packaged food |
 
 ### For brand
 | # | Skill | What it generates |
@@ -69,14 +70,14 @@ The result: prompts that produce studio-quality video instead of generic AI slop
 ```bash
 # Clone into your Claude skills folder
 cd ~/.claude/skills
-git clone https://github.com/rediumvex/ai-video-generator-claude.git ai-video-generator
+git clone https://github.com/mhmd-eng/ai-video-generator-claude.git ai-video-generator
 ```
 
 Or if you use gstack:
 
 ```bash
 cd ~/.claude/skills/gstack
-git clone https://github.com/rediumvex/ai-video-generator-claude.git ai-video-generator
+git clone https://github.com/mhmd-eng/ai-video-generator-claude.git ai-video-generator
 ```
 
 Restart Claude Code. Each skill inside `skills/` is now available.
@@ -103,6 +104,9 @@ python install.py --list   # Preview available skills
 
 "Give me a viral TikTok hook for a faceless finance channel"
 → Viral Hook + Faceless Channel skills combine for a scroll-stopping 2-second opener
+
+"8s Reel of our signature burger for the restaurant's menu"
+→ Food & Beverage skill builds the sizzle-to-cheese-pull arc: backlit steam, raking light, ASMR-first sound
 
 "Turn this podcast clip into a cinematic video for Reels"
 → Podcast Visual skill transforms the audio into visual storytelling with kinetic typography

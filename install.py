@@ -11,12 +11,15 @@ Usage:
     python install.py --help       # Show help
 """
 
-import os
 import sys
 import shutil
-import platform
 import re
 from pathlib import Path
+
+# The Windows console defaults to cp1252, which cannot encode the box-drawing
+# and check characters used below.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 # ── Colors ──────────────────────────────────────────────────────────
 
@@ -69,13 +72,34 @@ def discover_skills() -> list[dict]:
     for skill_dir in sorted(src.iterdir()):
         skill_file = skill_dir / "SKILL.md"
         if skill_dir.is_dir() and skill_file.exists():
-            title = extract_title(skill_file)
             skills.append({
                 "name": skill_dir.name,
+                "install_name": extract_skill_name(skill_file) or skill_dir.name,
                 "path": skill_dir,
-                "title": title,
+                "title": extract_title(skill_file),
             })
     return skills
+
+
+def extract_skill_name(skill_file: Path) -> str | None:
+    """Read `name:` from the SKILL.md YAML frontmatter.
+
+    Claude Code identifies a skill by this name, so it is what the installed
+    directory must be called — not the numbered source directory.
+    """
+    try:
+        with open(skill_file, "r", encoding="utf-8") as f:
+            if f.readline().strip() != "---":
+                return None
+            for line in f:
+                if line.strip() == "---":
+                    break
+                match = re.match(r"name:\s*(\S+)", line)
+                if match:
+                    return match.group(1)
+    except OSError:
+        pass
+    return None
 
 
 def extract_title(skill_file: Path) -> str:
@@ -93,14 +117,8 @@ def extract_title(skill_file: Path) -> str:
 # ── Claude skills directory ─────────────────────────────────────────
 
 def detect_skills_dir() -> Path:
-    system = platform.system()
-    if system == "Darwin":
-        return Path.home() / "Library" / "Application Support" / "Claude" / "skills"
-    elif system == "Linux":
-        return Path.home() / ".config" / "Claude" / "skills"
-    else:
-        err(f"Unsupported OS: {system}. Copy skills manually.")
-        sys.exit(1)
+    """Claude Code reads user skills from ~/.claude/skills on every platform."""
+    return Path.home() / ".claude" / "skills"
 
 
 def ensure_skills_dir(skills_dir: Path) -> None:
@@ -120,16 +138,16 @@ def ensure_skills_dir(skills_dir: Path) -> None:
 
 def install_skill(skill: dict, dest_dir: Path) -> bool:
     """Copy a single skill into the Claude skills directory."""
-    target = dest_dir / skill["name"]
+    target = dest_dir / skill["install_name"]
 
     if target.exists():
-        reply = input(f"  Overwrite {skill['name']}? (y/n): ").strip().lower()
+        reply = input(f"  Overwrite {skill['install_name']}? (y/n): ").strip().lower()
         if reply not in ("y", "yes"):
             return False
         shutil.rmtree(target)
 
     shutil.copytree(skill["path"], target)
-    ok(skill["name"])
+    ok(f"{skill['name']} → {skill['install_name']}")
     return True
 
 
